@@ -33,13 +33,14 @@ const Register = () => {
         return '';
       case 'phone':
         if (!value.trim()) return 'Phone number is required';
-        if (!/^\+?[0-9]{9,15}$/.test(value.replace(/\s/g, ''))) return 'Enter a valid phone number (9-15 digits)';
+        if (!/^[0-9]{10}$/.test(value)) return 'Phone number must be exactly 10 digits';
         return '';
       case 'password':
         if (!value) return 'Password is required';
-        if (value.length < 6) return 'Password must be at least 6 characters';
-        if (!/[A-Z]/.test(value)) return 'Password must contain at least one uppercase letter';
+        if (value.length < 9) return 'Password must be at least 9 characters';
+        if (!/[a-zA-Z]/.test(value)) return 'Password must contain at least one letter';
         if (!/[0-9]/.test(value)) return 'Password must contain at least one number';
+        if (!/[^a-zA-Z0-9]/.test(value)) return 'Password must contain at least one special character';
         return '';
       case 'confirmPassword':
         if (!value) return 'Please confirm your password';
@@ -190,10 +191,11 @@ const Register = () => {
                   <input
                     type="tel"
                     value={phone}
-                    onChange={(e) => handleFieldChange('phone', e.target.value, setPhone)}
+                    onChange={(e) => handleFieldChange('phone', e.target.value.replace(/\D/g, '').slice(0, 10), setPhone)}
                     onBlur={() => handleBlur('phone')}
+                    maxLength={10}
                     className={inputClass('phone')}
-                    placeholder="+94771234567"
+                    placeholder="0771234567"
                   />
                 </div>
                 <FieldError field="phone" />
