@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+}
+
+/* Quill editor overrides */
+.editor-wrapper .ql-container {
+  min-height: 300px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+}
+
+.editor-wrapper .ql-toolbar {
+  border: none;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.editor-wrapper .ql-editor {
+  min-height: 300px;
+  padding: 1.5rem;
+}
+
+.editor-wrapper .ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
